@@ -1,0 +1,12 @@
+{
+  "name": "task-manager-fullstack-app",
+  "version": "1.0.0",
+  "description": "This project is a full-stack application that combines a RESTful API built with Express.js, Sequelize, and PostgreSQL for the backend with a React application for the frontend. The backend provides CRUD operations for managing tasks, user registration, authentication, and role-based access control. The frontend allows users to interact with these functionalities through a web interface.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
