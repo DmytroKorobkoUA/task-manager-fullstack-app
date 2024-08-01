@@ -1,6 +1,7 @@
 {
-  "name": "express-api",
+  "name": "backend",
   "version": "1.0.0",
+  "description": "Backend part",
   "main": "app.js",
   "type": "module",
   "scripts": {
@@ -9,10 +10,6 @@
     "seed": "dotenv -e .env npx babel-node --require @babel/register ./node_modules/sequelize-cli/lib/sequelize db:seed:all --config config/config.js",
     "test": "mocha --require @babel/register"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "dotenv": "^16.4.5",

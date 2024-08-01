@@ -2,28 +2,28 @@ require('dotenv').config();
 
 const config = {
   development: {
-    username: process.env.DB_USER || 'default_user',
-    password: process.env.DB_PASSWORD || 'default_password',
-    database: process.env.DB_NAME || 'default_database',
-    host: process.env.DB_HOST || 'localhost',
+    username: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    host: process.env.DB_HOST,
     dialect: 'postgres',
-    port: process.env.DB_PORT || 5432
+    port: parseInt(process.env.DB_PORT, 10)
   },
   test: {
-    username: process.env.DB_USER || 'default_user',
-    password: process.env.DB_PASSWORD || 'default_password',
+    username: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
     database: 'express_api_test',
-    host: process.env.DB_HOST || 'localhost',
+    host: process.env.DB_HOST,
     dialect: 'postgres',
-    port: process.env.DB_PORT || 5432
+    port: parseInt(process.env.DB_PORT, 10)
   },
   production: {
-    username: process.env.DB_USER || 'default_user',
-    password: process.env.DB_PASSWORD || 'default_password',
-    database: process.env.DB_NAME || 'default_database_prod',
-    host: process.env.DB_HOST || 'localhost',
+    username: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    host: process.env.DB_HOST,
     dialect: 'postgres',
-    port: process.env.DB_PORT || 5432
+    port: parseInt(process.env.DB_PORT, 10)
   }
 };
 
