@@ -3,7 +3,7 @@ import axios from 'axios';
 import API_BASE_URL from '../config/apiConfig';
 import { Link } from 'react-router-dom';
 
-function Tasks() {
+const Tasks = React.memo(() => {
     const [tasks, setTasks] = useState([]);
 
     useEffect(() => {
@@ -39,6 +39,6 @@ function Tasks() {
             </ul>
         </div>
     );
-}
+});
 
 export default Tasks;

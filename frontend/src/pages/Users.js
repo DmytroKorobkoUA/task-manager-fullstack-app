@@ -3,7 +3,7 @@ import axios from 'axios';
 import API_BASE_URL from '../config/apiConfig';
 import { Link } from 'react-router-dom';
 
-function Users() {
+const Users = React.memo(() => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
@@ -39,6 +39,6 @@ function Users() {
             </ul>
         </div>
     );
-}
+});
 
 export default Users;
