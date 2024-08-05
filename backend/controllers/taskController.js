@@ -13,7 +13,7 @@ export const getAllTasks = async (req, res) => {
         const tasks = await Task.findAll();
 
         await client.set(cacheKey, JSON.stringify(tasks), {
-            EX: 60, // Время жизни кэша 60 секунд
+            EX: 60,
         });
 
         return res.json(tasks);

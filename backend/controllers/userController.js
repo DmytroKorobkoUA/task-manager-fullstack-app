@@ -15,7 +15,7 @@ export const getAllUsers = async (req, res) => {
         const users = await User.findAll();
 
         await client.set(cacheKey, JSON.stringify(users), {
-            EX: 60, // Время жизни кэша 60 секунд
+            EX: 60,
         });
 
         return res.json(users);

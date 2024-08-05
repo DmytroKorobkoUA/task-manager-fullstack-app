@@ -96,9 +96,10 @@ task-manager-fullstack-app/
    CREATE DATABASE task_manager_fullstack_app;
    ```
    
-   Run the following command to apply the database migrations:
+   Run the following command to apply the database migrations and default seeds:
    ```bash
    npm run migrate
+   npm run seed
    ```
 
 ### Running the Application
