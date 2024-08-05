@@ -1,25 +1,27 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Navbar from '../components/Navbar';
+import styles from '../styles/Home.module.css';
 
 function Home() {
     const token = localStorage.getItem('token');
+    const links = token
+        ? [
+            { label: 'Dashboard', to: '/dashboard' },
+            { label: 'Logout', to: '/logout' },
+        ]
+        : [
+            { label: 'Login', to: '/login' },
+            { label: 'Register', to: '/register' },
+        ];
 
     return (
-        <div style={{ textAlign: 'center', marginTop: '50px' }}>
-            <h1>Welcome to the Task Manager</h1>
-            <p>Manage your tasks efficiently with our intuitive task manager application.</p>
-            <div style={{ marginTop: '20px' }}>
-                {token ? (
-                    <>
-                        <Link to="/dashboard" style={{ marginRight: '10px' }}>Dashboard</Link>
-                        <Link to="/logout">Logout</Link>
-                    </>
-                ) : (
-                    <>
-                        <Link to="/login" style={{ marginRight: '10px' }}>Login</Link>
-                        <Link to="/register">Register</Link>
-                    </>
-                )}
+        <div className={styles.container}>
+            <Navbar links={links} />
+            <div className={styles.content}>
+                <h1 className={styles.header}>Welcome to the Task Manager</h1>
+                <p className={styles.description}>
+                    Manage your tasks efficiently with our intuitive task manager application.
+                </p>
             </div>
         </div>
     );

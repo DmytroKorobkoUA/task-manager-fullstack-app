@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import API_BASE_URL from '../config/apiConfig';
+import Navbar from '../components/Navbar';
+import styles from '../styles/Auth.module.css';
 
 function Register() {
     const [name, setName] = useState('');
@@ -28,32 +30,59 @@ function Register() {
         }
     };
 
+    const links = [
+        { label: 'Home', to: '/' },
+        { label: 'Login', to: '/login' }
+    ];
+
     return (
-        <div>
-            <h1>Register</h1>
-            <form onSubmit={handleSubmit}>
-                <label>Name:
-                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
-                </label>
-                <label>Email:
-                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-                </label>
-                <label>Password:
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-                </label>
-                <label>
-                    <input
-                        type="checkbox"
-                        checked={isAdmin}
-                        onChange={(e) => setIsAdmin(e.target.checked)}
-                    />
-                    Admin
-                </label>
-                <button type="submit">Register</button>
-            </form>
-            {message && <p>{message}</p>}
-            <div style={{ marginTop: '20px' }}>
-                <Link to="/">Home</Link>
+        <div className={styles.container}>
+            <Navbar links={links} />
+            <div className={styles.formWrapper}>
+                <h1 className={styles.header}>Register</h1>
+                <form onSubmit={handleSubmit} className={styles.form}>
+                    <label className={styles.label}>Name:
+                        <input
+                            type="text"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                            className={styles.input}
+                        />
+                    </label>
+                    <label className={styles.label}>Email:
+                        <input
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                            className={styles.input}
+                        />
+                    </label>
+                    <label className={styles.label}>Password:
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                            className={styles.input}
+                        />
+                    </label>
+                    <label className={styles.checkboxLabel}>
+                        <input
+                            type="checkbox"
+                            checked={isAdmin}
+                            onChange={(e) => setIsAdmin(e.target.checked)}
+                            className={styles.checkbox}
+                        />
+                        Admin
+                    </label>
+                    <button type="submit" className={styles.button}>Register</button>
+                </form>
+                {message && <p className={styles.message}>{message}</p>}
+                <div className={styles.linkWrapper}>
+                    <Link to="/" className={styles.link}>Home</Link>
+                </div>
             </div>
         </div>
     );

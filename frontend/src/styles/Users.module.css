@@ -1,0 +1,285 @@
+/* Main container styling for users-related pages */
+.container {
+    padding-top: 60px; /* Space for navbar */
+    min-height: 100vh;
+    background-color: #333; /* Dark grey background */
+    color: #e0e0e0; /* Light grey text color */
+    font-family: 'Arial', sans-serif;
+    box-sizing: border-box;
+}
+
+/* Content wrapper styling */
+.content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Header styling for users-related pages */
+.header {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #a4f9c8; /* Mint accent color */
+}
+
+/* Link wrapper styling */
+.linkWrapper {
+    margin-bottom: 30px;
+}
+
+/* General link styling */
+.link {
+    color: #a4f9c8; /* Mint accent color */
+    text-decoration: none;
+    margin-right: 15px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.link:hover {
+    color: #8ce8b9; /* Darker mint color on hover */
+}
+
+/* Create link styling */
+.createLink {
+    color: #a4f9c8; /* Mint accent color */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.createLink:hover {
+    color: #8ce8b9; /* Darker mint color on hover */
+}
+
+/* user list styling */
+.userList {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Individual user item styling */
+.userItem {
+    margin-bottom: 15px;
+}
+
+/* user link styling */
+.userLink {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-size: 1.2em;
+    transition: color 0.3s;
+}
+
+.userLink:hover {
+    color: #a4f9c8; /* Mint accent color */
+}
+
+/* user details styling */
+.userDetails {
+    text-align: left;
+    padding: 20px;
+    background-color: #444; /* Darker grey background */
+    border-radius: 10px;
+    color: #b3b3b3;
+}
+
+/* Loading text styling */
+.loading {
+    font-size: 1.5em;
+    color: #b3b3b3;
+}
+
+/* Delete link styling */
+.deleteLink {
+    color: #ff6b6b; /* Light red color */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.deleteLink:hover {
+    color: #ff4c4c; /* Darker red color on hover */
+}
+
+/* Confirmation text styling for delete user page */
+.confirmation {
+    font-size: 1.5em;
+    margin-bottom: 30px;
+    color: #b3b3b3;
+}
+
+/* Button wrapper styling */
+.buttonWrapper {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Delete button styling */
+.deleteButton {
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #ff6b6b; /* Light red background */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.deleteButton:hover {
+    background-color: #ff4c4c; /* Darker red on hover */
+}
+
+/* Cancel button styling */
+.cancelButton {
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #555; /* Dark grey background */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cancelButton:hover {
+    background-color: #444; /* Darker grey on hover */
+}
+
+/* Form styling */
+.form {
+    margin-top: 20px;
+    background-color: #444; /* Darker grey background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Form field styling */
+.formField {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    text-align: left;
+    align-items: flex-start; /* Align items to the start (left) */
+}
+
+/* Form label styling */
+.formLabel {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #a4f9c8; /* Mint accent color */
+}
+
+/* Form input styling */
+.formInput, .formSelect {
+    width: 100%;
+    padding: 8px;
+    font-size: 1em;
+    color: #333; /* Dark text color */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-top: 5px; /* Space between label and input */
+}
+
+/* Form checkbox styling */
+.formCheckbox {
+    margin-left: 10px;
+    transform: scale(1.2);
+    vertical-align: middle;
+}
+
+/* Form select styling */
+.formSelect {
+    width: 100%;
+    padding: 8px;
+    font-size: 1em;
+    color: #333; /* Dark text color */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Submit button styling */
+.submitButton {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #a4f9c8; /* Mint accent color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submitButton:hover {
+    background-color: #8ce8b9; /* Darker mint on hover */
+}
+
+/* User table styling */
+.userTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.userTable th, .userTable td {
+    padding: 12px;
+    border: 1px solid #555; /* Darker grey border */
+    text-align: left;
+}
+
+.userTable th {
+    background-color: #444; /* Darker grey background for headers */
+    color: #a4f9c8; /* Mint accent color */
+}
+
+.userTable tr:nth-child(even) {
+    background-color: #555; /* Slightly lighter grey for even rows */
+}
+
+.userTable tr:hover {
+    background-color: #666; /* Slightly darker grey on hover */
+}
+
+/* User name styling */
+.userName {
+    color: #e0e0e0;
+}
+
+/* User email styling */
+.userEmail {
+    color: #b3b3b3;
+}
+
+/* User role styling */
+.userRole {
+    color: #a4f9c8; /* Mint accent color */
+}
+
+/* User actions styling */
+.userActions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Align links within the table actions column */
+.userActions .userLink {
+    text-decoration: none;
+    color: #a4f9c8;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.userActions .userLink:hover {
+    color: #8ce8b9; /* Darker mint color on hover */
+}

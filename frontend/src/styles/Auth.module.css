@@ -1,0 +1,107 @@
+/* Main container styling for authentication pages */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #333; /* Dark grey background */
+    padding-top: 60px; /* Add space for navbar */
+    box-sizing: border-box;
+    color: #e0e0e0; /* Light grey text color */
+}
+
+/* Form wrapper styling */
+.formWrapper {
+    width: 100%;
+    max-width: 400px;
+    background-color: #444; /* Slightly lighter grey */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Header styling for authentication pages */
+.header {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #a4f9c8; /* Mint accent color */
+    text-align: center;
+}
+
+/* Styling for form elements */
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Styling for labels */
+.label {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Styling for input fields */
+.input {
+    padding: 10px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    background-color: #555; /* Dark grey input background */
+    color: #e0e0e0;
+}
+
+/* Styling for submit button */
+.button {
+    padding: 10px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #333;
+    background-color: #a4f9c8; /* Mint accent color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #8ce8b9; /* Darker mint color on hover */
+}
+
+/* Styling for messages */
+.message {
+    color: #ff6b6b; /* Light red for error messages */
+    text-align: center;
+    margin-top: 15px;
+}
+
+/* Styling for checkbox labels */
+.checkboxLabel {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+/* Styling for checkbox input */
+.checkbox {
+    margin-right: 10px;
+}
+
+/* Link styling wrapper */
+.linkWrapper {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Individual link styling */
+.link {
+    color: #a4f9c8; /* Mint accent color */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.link:hover {
+    color: #8ce8b9; /* Darker mint color on hover */
+}

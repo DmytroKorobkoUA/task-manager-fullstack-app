@@ -1,16 +1,21 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Navbar from '../components/Navbar';
+import styles from '../styles/Dashboard.module.css';
 
 function Dashboard() {
+    const links = [
+        { label: 'Home', to: '/' },
+        { label: 'Users', to: '/users' },
+        { label: 'Tasks', to: '/tasks' },
+        { label: 'Logout', to: '/logout' }
+    ];
+
     return (
-        <div style={{ textAlign: 'center', marginTop: '50px' }}>
-            <h1>Dashboard</h1>
-            <p>Welcome back! Manage your tasks and view user information.</p>
-            <div style={{ marginTop: '20px' }}>
-                <Link to="/users" style={{ marginRight: '10px' }}>Users</Link>
-                <Link to="/tasks" style={{ marginRight: '10px' }}>Tasks</Link>
-                <Link to="/" style={{ marginRight: '10px' }}>Home</Link>
-                <Link to="/logout">Logout</Link>
+        <div className={styles.container}>
+            <Navbar links={links} />
+            <div className={styles.content}>
+                <h1 className={styles.header}>Dashboard</h1>
+                <p className={styles.description}>Welcome back! Manage your tasks and view user information.</p>
             </div>
         </div>
     );

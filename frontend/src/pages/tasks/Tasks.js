@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import API_BASE_URL from '../config/apiConfig';
+import API_BASE_URL from '../../config/apiConfig';
 import { Link } from 'react-router-dom';
+import Navbar from '../../components/Navbar';
+import styles from '../../styles/Tasks.module.css';
 
 const Tasks = React.memo(() => {
     const [tasks, setTasks] = useState([]);
@@ -24,19 +26,48 @@ const Tasks = React.memo(() => {
         fetchTasks();
     }, []);
 
+    const links = [
+        { label: 'Dashboard', to: '/dashboard' },
+        { label: 'Home', to: '/' },
+        { label: 'Logout', to: '/logout' }
+    ];
+
     return (
-        <div>
-            <h1>Tasks</h1>
-            <div style={{ marginBottom: '20px' }}>
-                <Link to="/dashboard" style={{ marginRight: '10px' }}>Dashboard</Link>
-                <Link to="/" style={{ marginRight: '10px' }}>Home</Link>
-                <Link to="/logout">Logout</Link>
+        <div className={styles.container}>
+            <Navbar links={links} />
+            <div className={styles.content}>
+                <h1 className={styles.header}>Tasks</h1>
+                <div className={styles.linkWrapper}>
+                    <Link to="/tasks/create" className={styles.createLink}>Create New Task</Link>
+                </div>
+                <table className={styles.taskTable}>
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Completed</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {tasks.map(task => (
+                        <tr key={task.id}>
+                            <td className={styles.taskTitle}>
+                                <Link to={`/tasks/${task.id}`} className={styles.taskLink}>
+                                    {task.title}
+                                </Link>
+                            </td>
+                            <td className={styles.taskCompleted}>
+                                {task.completed ? 'Yes' : 'No'}
+                            </td>
+                            <td className={styles.taskActions}>
+                                <Link to={`/tasks/update/${task.id}`} className={styles.taskLink}>Edit</Link>
+                                <Link to={`/tasks/delete/${task.id}`} className={styles.deleteLink}>Delete</Link>
+                            </td>
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
             </div>
-            <ul>
-                {tasks.map(task => (
-                    <li key={task.id}>{task.title}</li>
-                ))}
-            </ul>
         </div>
     );
 });

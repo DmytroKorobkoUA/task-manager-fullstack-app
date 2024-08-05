@@ -1,0 +1,28 @@
+/* Main container styling */
+.container {
+    text-align: center;
+    margin-top: 50px;
+    color: #e0e0e0; /* Light grey text for contrast */
+    font-family: 'Arial', sans-serif;
+}
+
+/* Main header styling */
+.header {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #a4f9c8; /* Mint accent color */
+    margin-bottom: 10px;
+}
+
+/* Paragraph text styling */
+.description {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    color: #b3b3b3;
+}
+
+/* Content wrapper for the main page, taking navbar height into account */
+.content {
+    margin-top: 80px; /* Ensure there's space below the navbar */
+    padding: 20px;
+}
