@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
-import API_BASE_URL from '../config/apiConfig';
+import { API_BASE_URL } from '../config/apiConfig';
 import Navbar from '../components/Navbar';
 import styles from '../styles/Auth.module.css';
 

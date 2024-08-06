@@ -7,6 +7,7 @@ function Dashboard() {
         { label: 'Home', to: '/' },
         { label: 'Users', to: '/users' },
         { label: 'Tasks', to: '/tasks' },
+        { label: 'Chat', to: '/chat' },
         { label: 'Logout', to: '/logout' }
     ];
 

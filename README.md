@@ -33,12 +33,14 @@ task-manager-fullstack-app/
 - **User Management**: Admins can create, update, and delete users.
 - **Role-Based Access Control**: Differentiate access for admin and regular users.
 - **Database Integration**: Uses PostgreSQL with Sequelize ORM.
+- **Real-Time Chat**: Implements real-time chat functionality using WebSockets, allowing users to send and receive messages instantly.
 
 ### Frontend
 
 - **React Application**: Provides a user interface for interacting with the backend API.
 - **User Authentication**: Log in and manage sessions with JWT.
 - **Task Management**: View, create, edit, and delete tasks.
+- **Real-Time Chat Interface**: Integrated chat interface using WebSockets for real-time message updates.
 - **Responsive Design**: Adaptable UI for different screen sizes.
 
 ## Requirements
@@ -138,12 +140,16 @@ This will concurrently run the backend on http://localhost:3000 and the frontend
 ## Authentication and Authorization
 
 - **JWT Authentication**: The API uses JSON Web Tokens (JWT) for authentication. Include the token in the Authorization header for endpoints that require authentication.
-- **Role-Based Access Control**: Certain endpoints require admin privileges, enforced via middleware.
+- **Role-Based Access Control**: Messages are instantly updated for all connected clients without requiring page reloads.
+
+## Real-Time Chat
+
+- **WebSocket Integration**: The application uses WebSockets for real-time chat functionality, allowing users to send and receive messages instantly.
+- **Real-Time Message Updates**: Certain endpoints require admin privileges, enforced via middleware.
 
 ## Frontend Overview
 
-The frontend is a React application that allows users to interact with the backend API. It provides a responsive UI for task management and user authentication.
-
+The frontend is a React application that allows users to interact with the backend API. It provides a responsive UI for task management, user authentication, and real-time chat.
 ### Scripts
 
 - **Start the frontend**:

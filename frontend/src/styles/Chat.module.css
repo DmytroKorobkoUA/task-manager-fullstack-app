@@ -1,0 +1,144 @@
+/* Main container styling for chat-related pages */
+.container {
+    padding-top: 60px; /* Space for navbar */
+    min-height: 100vh;
+    background-color: #333; /* Dark grey background */
+    color: #e0e0e0; /* Light grey text color */
+    font-family: 'Arial', sans-serif;
+    box-sizing: border-box;
+}
+
+/* Content wrapper styling */
+.content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Header styling for chat page */
+.header {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #a4f9c8; /* Mint accent color */
+}
+
+/* Chat window styling using Flexbox */
+.chatWindow {
+    height: 400px;
+    overflow-y: auto; /* Enable vertical scrolling */
+    background-color: #444; /* Darker grey background */
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    padding-right: 10px; /* Additional space for scrollbar */
+}
+
+/* Container for messages */
+.messagesContainer {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Allow messages to take up available space */
+    overflow-y: auto; /* Enable scrolling if content overflows */
+    padding-right: 15px; /* Space for scrollbar */
+}
+
+/* Individual message styling */
+.message {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    position: relative; /* For positioning delete button */
+    background-color: #555; /* Slightly lighter grey for messages */
+    margin-right: 15px; /* Add space to the right */
+}
+
+/* Styling for messages sent by the current user */
+.myMessage {
+    align-self: flex-end;
+    background-color: #a4f9c8; /* Mint accent color for own messages */
+    margin-right: 0; /* No additional margin for own messages */
+}
+
+/* Styling for messages sent by others */
+.otherMessage {
+    align-self: flex-start;
+}
+
+/* Header styling within message */
+.messageHeader {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+    color: #bbb; /* Light grey for metadata */
+}
+
+.messageHeader strong {
+    font-weight: bold;
+}
+
+/* Message content styling */
+.messageContent {
+    margin-bottom: 0;
+    color: #bbb; /* Light grey text color */
+}
+
+/* Message metadata styling */
+.timestamp {
+    font-size: 0.8em;
+    color: #bbb; /* Light grey for timestamp */
+}
+
+/* Delete button styling */
+.deleteButton {
+    margin-top: 5px; /* Margin above delete button */
+    background: none;
+    border: none;
+    color: #e0e0e0;
+    cursor: pointer;
+    font-size: 0.8em;
+    transition: color 0.2s;
+}
+
+.deleteButton:hover {
+    color: #ff4d4d; /* Red color on hover */
+}
+
+/* Input wrapper styling */
+.inputWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Input field styling */
+.input {
+    flex-grow: 1;
+    padding: 10px;
+    font-size: 1em;
+    border: 2px solid #555;
+    border-radius: 5px;
+    background-color: #555;
+    color: #e0e0e0;
+}
+
+/* Send button styling */
+.sendButton {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #333;
+    background-color: #a4f9c8; /* Mint accent color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.sendButton:hover {
+    background-color: #91e7b6; /* Slightly darker mint */
+}

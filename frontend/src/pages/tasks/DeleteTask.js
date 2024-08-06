@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import API_BASE_URL from '../../config/apiConfig';
+import { API_BASE_URL } from '../../config/apiConfig';
 import { useNavigate, useParams } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import styles from '../../styles/Tasks.module.css';
@@ -26,6 +26,7 @@ const DeleteTask = () => {
     const links = [
         { label: 'Dashboard', to: '/dashboard' },
         { label: 'Tasks', to: '/tasks' },
+        { label: 'Chat', to: '/chat' },
         { label: 'Logout', to: '/logout' }
     ];
 

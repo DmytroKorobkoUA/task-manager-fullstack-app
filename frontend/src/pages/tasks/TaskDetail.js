@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import API_BASE_URL from '../../config/apiConfig';
+import { API_BASE_URL } from '../../config/apiConfig';
 import { Link, useParams } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import styles from '../../styles/Tasks.module.css';
@@ -30,6 +30,7 @@ const TaskDetail = () => {
     const links = [
         { label: 'Dashboard', to: '/dashboard' },
         { label: 'Tasks', to: '/tasks' },
+        { label: 'Chat', to: '/chat' },
         { label: 'Logout', to: '/logout' }
     ];
 

@@ -283,3 +283,10 @@
 .userActions .userLink:hover {
     color: #8ce8b9; /* Darker mint color on hover */
 }
+
+.accessDenied {
+    color: #ff4d4d;
+    font-size: 1.2em;
+    text-align: center;
+    margin-top: 20px;
+}

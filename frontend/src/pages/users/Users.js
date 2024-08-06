@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import API_BASE_URL from '../../config/apiConfig';
-import { Link } from 'react-router-dom';
+import { API_BASE_URL } from '../../config/apiConfig';
+import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import styles from '../../styles/Users.module.css';
 
 const Users = React.memo(() => {
     const [users, setUsers] = useState([]);
+    const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -20,6 +22,7 @@ const Users = React.memo(() => {
                 setUsers(response.data);
             } catch (error) {
                 console.error('Error fetching users:', error);
+                setError('You do not have access to this page.');
             }
         };
 
@@ -29,17 +32,36 @@ const Users = React.memo(() => {
     const links = [
         { label: 'Dashboard', to: '/dashboard' },
         { label: 'Home', to: '/' },
+        { label: 'Chat', to: '/chat' },
         { label: 'Logout', to: '/logout' }
     ];
+
+    if (error) {
+        return (
+            <div className={styles.container}>
+                <Navbar links={links} />
+                <div className={styles.content}>
+                    <h1 className={styles.header}>Access Denied</h1>
+                    <p className={styles.errorMessage}>{error}</p>
+                </div>
+            </div>
+        );
+    }
+
+    const token = localStorage.getItem('token');
+    const decodedToken = JSON.parse(atob(token.split('.')[1]));
+    const isAdmin = decodedToken.role === 'admin';
 
     return (
         <div className={styles.container}>
             <Navbar links={links} />
             <div className={styles.content}>
                 <h1 className={styles.header}>Users</h1>
-                <div className={styles.linkWrapper}>
-                    <Link to="/users/create" className={styles.createLink}>Create New User</Link>
-                </div>
+                {isAdmin && (
+                    <div className={styles.linkWrapper}>
+                        <Link to="/users/create" className={styles.createLink}>Create New User</Link>
+                    </div>
+                )}
                 <table className={styles.userTable}>
                     <thead>
                     <tr>
@@ -60,8 +82,12 @@ const Users = React.memo(() => {
                             <td className={styles.userEmail}>{user.email}</td>
                             <td className={styles.userRole}>{user.role}</td>
                             <td className={styles.userActions}>
-                                <Link to={`/users/update/${user.id}`} className={styles.userLink}>Edit</Link>
-                                <Link to={`/users/delete/${user.id}`} className={styles.deleteLink}>Delete</Link>
+                                {isAdmin && (
+                                    <>
+                                        <Link to={`/users/update/${user.id}`} className={styles.userLink}>Edit</Link>
+                                        <Link to={`/users/delete/${user.id}`} className={styles.deleteLink}>Delete</Link>
+                                    </>
+                                )}
                             </td>
                         </tr>
                     ))}

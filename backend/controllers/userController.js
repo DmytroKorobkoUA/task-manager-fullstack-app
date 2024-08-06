@@ -95,7 +95,7 @@ export const registerUser = async (req, res) => {
 
         const hashedPassword = await bcrypt.hash(password, 10);
         const user = await User.create({ name, email, password: hashedPassword, role });
-        const token = jwt.sign({ userId: user.id, role: user.role }, 'secret_key', { expiresIn: '1h' });
+        const token = jwt.sign({ userId: user.id, userName: user.name, role: user.role }, 'secret_key', { expiresIn: '1h' });
 
         res.status(201).json({ token });
     } catch (error) {
@@ -117,7 +117,7 @@ export const loginUser = async (req, res) => {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
 
-        const token = jwt.sign({ userId: user.id, role: user.role }, 'secret_key', { expiresIn: '1h' });
+        const token = jwt.sign({ userId: user.id, userName: user.name, role: user.role }, 'secret_key', { expiresIn: '1h' });
 
         res.json({ token });
     } catch (error) {

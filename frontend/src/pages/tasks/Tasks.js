@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import API_BASE_URL from '../../config/apiConfig';
+import { API_BASE_URL } from '../../config/apiConfig';
 import { Link } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import styles from '../../styles/Tasks.module.css';
@@ -29,6 +29,7 @@ const Tasks = React.memo(() => {
     const links = [
         { label: 'Dashboard', to: '/dashboard' },
         { label: 'Home', to: '/' },
+        { label: 'Chat', to: '/chat' },
         { label: 'Logout', to: '/logout' }
     ];
 

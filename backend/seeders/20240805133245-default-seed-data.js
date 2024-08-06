@@ -30,6 +30,12 @@ export default {
             { title: 'Task 2', completed: true, userId: user[0].id, createdAt: new Date(), updatedAt: new Date() },
             { title: 'Task 3', completed: false, userId: user[0].id, createdAt: new Date(), updatedAt: new Date() }
         ]);
+
+        // Create messages
+        await queryInterface.bulkInsert('Messages', [
+            { content: 'Hello!', userId: admin[0].id, createdAt: new Date(), updatedAt: new Date() },
+            { content: 'Nice to meet you here!', userId: admin[0].id, createdAt: new Date(), updatedAt: new Date() }
+        ]);
     },
 
     down: async (queryInterface) => {
