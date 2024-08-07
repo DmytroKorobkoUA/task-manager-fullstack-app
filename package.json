@@ -4,13 +4,12 @@
   "description": "This project is a full-stack application that combines a RESTful API built with Express.js, Sequelize, and PostgreSQL for the backend with a React application for the frontend. The backend provides CRUD operations for managing tasks, user registration, authentication, and role-based access control. The frontend allows users to interact with these functionalities through a web interface.",
   "scripts": {
     "start": "node backend/app.js",
-    "server": "dotenv -e backend/.env node backend/app.js",
+    "server": "npm run start --prefix backend",
     "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
-    "dotenv-cli": "^7.4.2",
     "nodemon": "^3.1.4"
   }
 }

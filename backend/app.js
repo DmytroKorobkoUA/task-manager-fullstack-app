@@ -10,7 +10,9 @@ import messageRoutes from './routes/messages.js';
 import sequelize from './config/database.js';
 import Message from './models/message.js';
 
-dotenv.config();
+// Determine environment and load the corresponding .env file
+const envFile = process.env.NODE_ENV === 'production' ? '.env.production' : '.env.local';
+dotenv.config({ path: envFile });
 
 const app = express();
 
@@ -80,7 +82,6 @@ io.on('connection', (socket) => {
         console.log('A user disconnected');
     });
 });
-
 
 const port = process.env.PORT || 3000;
 

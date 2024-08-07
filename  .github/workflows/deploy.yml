@@ -1,0 +1,93 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: express_api
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Set up environment variables for Render
+        run: echo "DB_NAME=t_m_db\nDB_USER=alien\nDB_PASSWORD=hiAjToGz0zSlzHwSf59PJuhxUISxti0I\nDB_HOST=dpg-cqplsmjv2p9s73cf15e0-a\nDB_PORT=5432" > backend/.env.production
+
+      - name: Install root dependencies
+        run: npm install
+
+      - name: Install backend dependencies
+        run: |
+          cd backend
+          npm install
+
+      - name: Run backend migrations
+        run: |
+          cd backend
+          npm run migrate
+
+      - name: Seed database
+        run: |
+          cd backend
+          npm run seed
+
+      - name: Run backend tests
+        run: |
+          cd backend
+          npm test
+
+      - name: Install frontend dependencies
+        run: |
+          cd frontend
+          npm install
+
+      - name: Run frontend tests
+        run: |
+          cd frontend
+          npm test
+
+      - name: Build frontend
+        run: |
+          cd frontend
+          npm run build
+
+      - name: Deploy to Render Backend
+        env:
+          NODE_ENV: production
+          RENDER_BACKEND_DEPLOY_HOOK_KEY: ${{ secrets.RENDER_BACKEND_DEPLOY_HOOK_KEY }}
+          RENDER_BACKEND_SERVICE_ID: ${{ secrets.RENDER_BACKEND_SERVICE_ID }}
+        run: |
+          curl -X POST "https://api.render.com/deploy/${{ secrets.RENDER_BACKEND_SERVICE_ID }}?key=${{ secrets.RENDER_BACKEND_DEPLOY_HOOK_KEY }}"
+
+      - name: Deploy to Render Frontend
+        env:
+          RENDER_FRONTEND_DEPLOY_HOOK_KEY: ${{ secrets.RENDER_FRONTEND_DEPLOY_HOOK_KEY }}
+          RENDER_FRONTEND_SERVICE_ID: ${{ secrets.RENDER_FRONTEND_SERVICE_ID }}
+        run: |
+          curl -X POST "https://api.render.com/deploy/${{ secrets.RENDER_FRONTEND_SERVICE_ID }}?key=${{ secrets.RENDER_FRONTEND_DEPLOY_HOOK_KEY }}"
