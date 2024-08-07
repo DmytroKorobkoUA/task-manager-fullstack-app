@@ -79,6 +79,8 @@ node_modules
 
 # Environment files
 frontend/.env.local
+frontend/.env.development
 frontend/.env.production
 backend/.env.local
+backend/.env.development
 backend/.env.production
