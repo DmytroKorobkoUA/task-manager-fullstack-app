@@ -48,7 +48,6 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 
-
 ### Node ###
 # Logs
 logs
@@ -77,3 +76,9 @@ build/Release
 # Dependency directory
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
 node_modules
+
+# Environment files
+frontend/.env.local
+frontend/.env.production
+backend/.env.local
+backend/.env.production

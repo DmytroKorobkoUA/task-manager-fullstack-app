@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node app.js",
-    "migrate": "dotenv -e .env.${NODE_ENV} npx babel-node --require @babel/register ./node_modules/sequelize-cli/lib/sequelize db:migrate --config config/config.js",
-    "seed": "dotenv -e .env.${NODE_ENV} npx babel-node --require @babel/register ./node_modules/sequelize-cli/lib/sequelize db:seed:all --config config/config.js",
+    "migrate": "dotenv -e .env.${NODE_ENV} npx sequelize-cli db:migrate --config config/config.js",
+    "seed": "dotenv -e .env.${NODE_ENV} npx sequelize-cli db:seed:all --config config/config.js",
     "test": "mocha --require @babel/register"
   },
   "dependencies": {
