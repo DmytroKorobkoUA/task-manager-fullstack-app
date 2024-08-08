@@ -191,7 +191,3 @@ If you want to contribute or modify this project, ensure you are using a compati
 - **JWT Authentication**: The API uses JSON Web Tokens (JWT) for authentication. Include the token in the Authorization header for endpoints that require authentication.
 - **Password Hashing**: User passwords are hashed using bcrypt before being stored in the database.
 - **Environment Variable**: Store sensitive information in environment variables to keep them secure.
-
-
-## Production URL
-[Task Manager App](https://task-manager-fullstack-app.onrender.com/)
