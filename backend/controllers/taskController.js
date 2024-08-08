@@ -38,6 +38,7 @@ export const getTaskById = async (req, res) => {
 };
 
 export const createTask = async (req, res) => {
+    console.log('Request body:', req.body);
     try {
         const task = await Task.create(req.body);
 

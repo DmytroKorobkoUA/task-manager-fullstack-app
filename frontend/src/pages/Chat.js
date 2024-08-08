@@ -18,6 +18,7 @@ const Chat = React.memo(() => {
         { label: 'Tasks', to: '/tasks' },
         { label: 'Logout', to: '/logout' },
     ];
+
     useEffect(() => {
         const token = localStorage.getItem('token');
 
@@ -38,7 +39,6 @@ const Chat = React.memo(() => {
                     },
                 });
                 setMessages(response.data);
-                scrollToBottom();
             } catch (error) {
                 console.error('Error fetching messages:', error);
             }
@@ -48,7 +48,6 @@ const Chat = React.memo(() => {
 
         newSocket.on('message', (message) => {
             setMessages((prevMessages) => [...prevMessages, message]);
-            scrollToBottom();
         });
 
         newSocket.on('deleteMessage', (messageId) => {
@@ -59,43 +58,10 @@ const Chat = React.memo(() => {
             newSocket.disconnect();
         };
     }, []);
-useEffect(() => {
-        const token = localStorage.getItem('token');
 
-        const newSocket = io(BACKEND_BASE_URL, {
-            transports: ['websocket'],
-            auth: {
-                token,
-            },
-        });
-
-        setSocket(newSocket);
-
-        const fetchMessages = async () => {
-            try {
-                const response = await axios.get(`${API_BASE_URL}/messages`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                });
-                setMessages(response.data);
-                scrollToBottom();
-            } catch (error) {
-                console.error('Error fetching messages:', error);
-            }
-        };
-
-        fetchMessages();
-
-        newSocket.on('message', (message) => {
-            setMessages((prevMessages) => [...prevMessages, message]);
-            scrollToBottom();
-        });
-
-        return () => {
-            newSocket.disconnect();
-        };
-    }, []);
+    useEffect(() => {
+        scrollToBottom();
+    }, [messages]);
 
     const handleSendMessage = () => {
         if (newMessage.trim() !== '' && socket) {
@@ -126,7 +92,6 @@ useEffect(() => {
             console.error('Error deleting message:', error);
         }
     };
-
 
     const formatDate = (dateString) => {
         const options = {

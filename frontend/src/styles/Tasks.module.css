@@ -278,3 +278,52 @@
 .taskActions .taskLink:hover {
     color: #8ce8b9; /* Darker mint color on hover */
 }
+
+/* Task detail styling */
+.taskDetail {
+    text-align: left;
+    padding: 20px;
+    background-color: #444; /* Dark grey background */
+    border-radius: 10px;
+    color: #b3b3b3; /* Light grey text */
+    margin-top: 20px;
+}
+
+/* Back link styling */
+.backLink {
+    color: #a4f9c8; /* Mint accent color */
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+    display: inline-block;
+    transition: color 0.3s;
+}
+
+.backLink:hover {
+    color: #8ce8b9; /* Darker mint color on hover */
+}
+
+/* Form button styling (general for form submit buttons) */
+.formButton {
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #a4f9c8; /* Mint accent color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.formButton:hover {
+    background-color: #8ce8b9; /* Darker mint color on hover */
+}
+
+/* Error message styling */
+.error {
+    color: #ff6b6b; /* Light red color for errors */
+    font-size: 1em;
+    margin-top: 20px;
+    text-align: left;
+}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { API_BASE_URL } from '../../config/apiConfig';
+import { useMutation } from '@apollo/client';
+import { CREATE_TASK, GET_TASKS } from '../../graphql/taskQueries';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import styles from '../../styles/Tasks.module.css';
@@ -10,39 +11,39 @@ const CreateTask = () => {
     const [completed, setCompleted] = useState(false);
     const [users, setUsers] = useState([]);
     const [selectedUser, setSelectedUser] = useState('');
+    const [loadingUsers, setLoadingUsers] = useState(true);
+    const [errorUsers, setErrorUsers] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const token = localStorage.getItem('token');
-                const response = await axios.get(`${API_BASE_URL}/admin/users`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                });
+                const response = await axios.get('http://localhost:3000/api/users');
                 setUsers(response.data);
             } catch (error) {
+                setErrorUsers('Error fetching users.');
                 console.error('Error fetching users:', error);
+            } finally {
+                setLoadingUsers(false);
             }
         };
 
         fetchUsers();
     }, []);
 
+    const [createTask, { error: createTaskError }] = useMutation(CREATE_TASK, {
+        refetchQueries: [{ query: GET_TASKS }],
+        onError: (error) => {
+            console.error('Error creating task:', error);
+        }
+    });
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const token = localStorage.getItem('token');
-            await axios.post(
-                `${API_BASE_URL}/tasks`,
-                { title, completed, userId: selectedUser },
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                }
-            );
+            await createTask({
+                variables: { title, completed, userId: selectedUser },
+            });
             navigate('/tasks');
         } catch (error) {
             console.error('Error creating task:', error);
@@ -53,8 +54,11 @@ const CreateTask = () => {
         { label: 'Dashboard', to: '/dashboard' },
         { label: 'Tasks', to: '/tasks' },
         { label: 'Chat', to: '/chat' },
-        { label: 'Logout', to: '/logout' }
+        { label: 'Logout', to: '/logout' },
     ];
+
+    if (loadingUsers) return <p>Loading users...</p>;
+    if (errorUsers) return <p>{errorUsers}</p>;
 
     return (
         <div className={styles.container}>
@@ -84,14 +88,14 @@ const CreateTask = () => {
                         </label>
                     </div>
                     <div className={styles.formField}>
-                        <label className={styles.formLabel}>User</label>
+                        <label className={styles.formLabel}>Assign User</label>
                         <select
                             value={selectedUser}
                             onChange={(e) => setSelectedUser(e.target.value)}
                             required
                             className={styles.formSelect}
                         >
-                            <option value="">Select a User</option>
+                            <option value="">Select a user</option>
                             {users.map((user) => (
                                 <option key={user.id} value={user.id}>
                                     {user.name}
@@ -99,15 +103,14 @@ const CreateTask = () => {
                             ))}
                         </select>
                     </div>
-                    <button type="submit" className={styles.submitButton}>
+                    <button type="submit" className={styles.formButton}>
                         Create Task
                     </button>
                 </form>
-                <div className={styles.linkWrapper}>
-                    <Link to="/tasks" className={styles.link}>
-                        Back to Tasks
-                    </Link>
-                </div>
+                {createTaskError && <p>Error creating task: {createTaskError.message}</p>}
+                <Link to="/tasks" className={styles.backLink}>
+                    Back to Tasks
+                </Link>
             </div>
         </div>
     );

@@ -24,6 +24,21 @@ task-manager-fullstack-app/
 └── ...
 ```
 
+## Technologies Used
+This project utilizes a variety of technologies to provide a robust and feature-rich full-stack application. The technologies include:
+
+- **Node.js**: JavaScript runtime built on Chrome's V8 JavaScript engine, used for server-side operations.
+- **Express.js**: Web application framework for Node.js, used to build the RESTful API and serve the frontend.
+- **PostgreSQL**: Relational database management system used for storing and managing data.
+- **Redis**: In-memory data structure store, used for caching and optimizing performance.
+- **React**: JavaScript library for building user interfaces, used for the frontend of the application.
+- **GraphQL**: Query language for APIs, used to fetch and manage tasks data on both frontend and backend.
+- **JSON Web Tokens (JWT)**: Token-based authentication used for securing API endpoints and managing user sessions.
+- **Socket.io**: Library for real-time web socket communication, used for implementing chat functionality.
+- **Mocha**: Testing framework for running unit and integration tests.
+- **Chai**: Assertion library used with Mocha for writing tests.
+- **CI/CD**: Continuous Integration and Continuous Deployment setup for automated testing and deployment on Render.
+
 ## Features
 
 ### Backend
@@ -106,6 +121,7 @@ task-manager-fullstack-app/
 
 ### Running the Application
 
+- **Development Setup**:
 Start the server with:
 
    ```bash
@@ -114,6 +130,8 @@ Start the server with:
    ```
 
 This will concurrently run the backend on http://localhost:3000 and the frontend on http://localhost:3001. The frontend will proxy API requests to the backend server.
+
+- **Production Setup**: The application is configured to run in production using Render, which handles the deployment and scaling of the application.
 
 ## API Endpoints
 

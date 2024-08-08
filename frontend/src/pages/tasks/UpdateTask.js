@@ -1,47 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { API_BASE_URL } from '../../config/apiConfig';
+import axios from 'axios'; // Импортируем Axios
+import { useQuery, useMutation } from '@apollo/client';
+import { GET_TASK, UPDATE_TASK, GET_TASKS } from '../../graphql/taskQueries';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import styles from '../../styles/Tasks.module.css';
 
 const UpdateTask = () => {
     const { id } = useParams();
+    const navigate = useNavigate();
     const [title, setTitle] = useState('');
     const [completed, setCompleted] = useState(false);
     const [users, setUsers] = useState([]);
     const [selectedUser, setSelectedUser] = useState('');
-    const navigate = useNavigate();
 
-    useEffect(() => {
-        const fetchTask = async () => {
-            try {
-                const token = localStorage.getItem('token');
-                const response = await axios.get(`${API_BASE_URL}/tasks/${id}`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                });
-                setTitle(response.data.title);
-                setCompleted(response.data.completed);
-                setSelectedUser(response.data.userId);
-            } catch (error) {
-                console.error('Error fetching task:', error);
-            }
-        };
-
-        fetchTask();
-    }, [id]);
+    const { loading: taskLoading, error: taskError, data: taskData } = useQuery(GET_TASK, {
+        variables: { id },
+    });
 
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const token = localStorage.getItem('token');
-                const response = await axios.get(`${API_BASE_URL}/admin/users`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                });
+                const response = await axios.get('http://localhost:3000/api/users');
                 setUsers(response.data);
             } catch (error) {
                 console.error('Error fetching users:', error);
@@ -51,20 +31,28 @@ const UpdateTask = () => {
         fetchUsers();
     }, []);
 
+    const [updateTask] = useMutation(UPDATE_TASK, {
+        refetchQueries: [{ query: GET_TASKS }],
+    });
+
+    useEffect(() => {
+        if (taskData) {
+            setTitle(taskData.getTaskById.title);
+            setCompleted(taskData.getTaskById.completed);
+
+            if (taskData.getTaskById.user) {
+                setSelectedUser(taskData.getTaskById.user.id);
+            }
+        }
+    }, [taskData]);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const token = localStorage.getItem('token');
-            await axios.put(
-                `${API_BASE_URL}/tasks/${id}`,
-                { title, completed, userId: selectedUser },
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                }
-            );
-            navigate(`/tasks/${id}`);
+            await updateTask({
+                variables: { id, title, completed, userId: selectedUser },
+            });
+            navigate('/tasks');
         } catch (error) {
             console.error('Error updating task:', error);
         }
@@ -74,8 +62,11 @@ const UpdateTask = () => {
         { label: 'Dashboard', to: '/dashboard' },
         { label: 'Tasks', to: '/tasks' },
         { label: 'Chat', to: '/chat' },
-        { label: 'Logout', to: '/logout' }
+        { label: 'Logout', to: '/logout' },
     ];
+
+    if (taskLoading) return <p>Loading...</p>;
+    if (taskError) return <p>Error fetching task: {taskError.message}</p>;
 
     return (
         <div className={styles.container}>
@@ -105,14 +96,14 @@ const UpdateTask = () => {
                         </label>
                     </div>
                     <div className={styles.formField}>
-                        <label className={styles.formLabel}>User</label>
+                        <label className={styles.formLabel}>Assign User</label>
                         <select
                             value={selectedUser}
                             onChange={(e) => setSelectedUser(e.target.value)}
                             required
                             className={styles.formSelect}
                         >
-                            <option value="">Select a User</option>
+                            <option value="">Select a user</option>
                             {users.map((user) => (
                                 <option key={user.id} value={user.id}>
                                     {user.name}
@@ -120,15 +111,13 @@ const UpdateTask = () => {
                             ))}
                         </select>
                     </div>
-                    <button type="submit" className={styles.submitButton}>
+                    <button type="submit" className={styles.formButton}>
                         Update Task
                     </button>
                 </form>
-                <div className={styles.linkWrapper}>
-                    <Link to={`/tasks/${id}`} className={styles.link}>
-                        Back to Task Details
-                    </Link>
-                </div>
+                <Link to="/tasks" className={styles.backLink}>
+                    Back to Tasks
+                </Link>
             </div>
         </div>
     );
