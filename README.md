@@ -38,6 +38,7 @@ This project utilizes a variety of technologies to provide a robust and feature-
 - **Mocha**: Testing framework for running unit and integration tests.
 - **Chai**: Assertion library used with Mocha for writing tests.
 - **CI/CD**: Continuous Integration and Continuous Deployment setup for automated testing and deployment on Render.
+- **Docker**: Containerization platform used to package applications and dependencies for consistent deployment across environments.
 
 ## Features
 
@@ -49,6 +50,7 @@ This project utilizes a variety of technologies to provide a robust and feature-
 - **Role-Based Access Control**: Differentiate access for admin and regular users.
 - **Database Integration**: Uses PostgreSQL with Sequelize ORM.
 - **Real-Time Chat**: Implements real-time chat functionality using WebSockets, allowing users to send and receive messages instantly.
+- **Docker Support**: Backend services can be containerized and managed using Docker, simplifying deployment and scaling.
 
 ### Frontend
 
@@ -57,6 +59,7 @@ This project utilizes a variety of technologies to provide a robust and feature-
 - **Task Management**: View, create, edit, and delete tasks.
 - **Real-Time Chat Interface**: Integrated chat interface using WebSockets for real-time message updates.
 - **Responsive Design**: Adaptable UI for different screen sizes.
+- **Docker Support**: Frontend can be containerized for easy deployment and consistency across environments.
 
 ## Requirements
 
@@ -95,14 +98,24 @@ This project utilizes a variety of technologies to provide a robust and feature-
    
 3. **Environment Setup**
 
-   Create a .env file in the root directory of the project and provide the necessary environment variables. An example configuration is provided below:
+   Create a .env file in the root, frontend, backend directories of the project and provide the necessary environment variables. An example configuration is provided below:
 
    ```bash
-   DB_NAME=express_api
-   DB_USER=your_username
-   DB_PASSWORD=your_password
-   DB_HOST=localhost
+   NODE_ENV=production
+   PORT=3000
+   FRONTEND_URL=your_frontend_url
+   
+   DB_NAME=your_db_name
+   DB_USER=your_db_user
+   DB_PASSWORD=your_db_password
+   DB_HOST=your_db_host
    DB_PORT=5432
+   
+   REDIS_URL=your_redis_url
+   
+   REACT_APP_API_BASE_URL=your_api_url
+   REACT_APP_BACKEND_SERVER_BASE_URL=your_backend_url
+   REACT_APP_GRAPHQL_API_URL=your_graphql_url
    ```
    
 4. **Database Setup**
@@ -132,6 +145,31 @@ Start the server with:
 This will concurrently run the backend on http://localhost:3000 and the frontend on http://localhost:3001. The frontend will proxy API requests to the backend server.
 
 - **Production Setup**: The application is configured to run in production using Render, which handles the deployment and scaling of the application.
+
+- **Docker Deployment**: Alternatively, you can deploy the application using Docker. This allows for consistent environments across development, testing, and production.
+
+    1. **Build and Run with Docker Compose**:
+  
+       Ensure Docker is installed and running on your machine. Then, from the root directory of the project, execute:
+
+         ```bash
+         docker-compose up --build
+         ```
+
+    2. **Access the Application**:
+      Once the Docker containers are up and running, you can access the application at:
+
+         - Frontend: **http://localhost:3001**
+         - Backend API: **http://localhost:3000/api**
+
+    3. **Stopping the Application**:
+       To stop the application, use:
+
+         ```bash
+         docker-compose down
+         ```
+
+       This command will stop and remove the containers, but the data in PostgreSQL will persist due to the defined Docker volumes.
 
 ## API Endpoints
 
@@ -187,7 +225,9 @@ The frontend is a React application that allows users to interact with the backe
 
 If you want to contribute or modify this project, ensure you are using a compatible Node.js version and have PostgreSQL installed locally.
 
-### Backend    Development Commands:
+## Backend
+
+### Development Commands:
 
 - **Run Migrations**:
    ```bash

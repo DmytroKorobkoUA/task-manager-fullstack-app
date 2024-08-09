@@ -1,0 +1,79 @@
+version: '3.9'
+
+services:
+  # Postgres database service
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  # Redis cache service
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - app-network
+
+  # Backend service
+  backend:
+    build:
+      context: ./backend
+    container_name: backend
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - PORT=${PORT}
+      - FRONTEND_URL=${FRONTEND_URL}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - REDIS_URL=redis://redis:6379
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - app-network
+    env_file:
+      - ./.env.${NODE_ENV}
+
+  # Frontend service
+  frontend:
+    build:
+      context: ./frontend
+    container_name: frontend
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - REACT_APP_API_BASE_URL=${REACT_APP_API_BASE_URL}
+      - REACT_APP_BACKEND_SERVER_BASE_URL=${REACT_APP_BACKEND_SERVER_BASE_URL}
+      - REACT_APP_GRAPHQL_API_URL=${REACT_APP_GRAPHQL_API_URL}
+    ports:
+      - "3001:80"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+    env_file:
+      - ./.env.${NODE_ENV}
+
+# Define volumes for persistent storage
+volumes:
+  pgdata:
+
+# Define a custom network for the services
+networks:
+  app-network:
+    driver: bridge

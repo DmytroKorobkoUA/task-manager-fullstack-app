@@ -84,3 +84,5 @@ frontend/.env.production
 backend/.env.local
 backend/.env.development
 backend/.env.production
+.env.development
+.env.production
