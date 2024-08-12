@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { API_BASE_URL } from '../../config/apiConfig';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import styles from '../../styles/Users.module.css';
 
 const Users = React.memo(() => {
     const [users, setUsers] = useState([]);
     const [error, setError] = useState(null);
-    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchUsers = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.get(`${API_BASE_URL}/admin/users`, {
+                const response = await axios.get(`${API_BASE_URL}/users`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -75,9 +74,14 @@ const Users = React.memo(() => {
                     {users.map(user => (
                         <tr key={user.id}>
                             <td className={styles.userName}>
-                                <Link to={`/users/${user.id}`} className={styles.userLink}>
-                                    {user.name}
-                                </Link>
+                                {isAdmin && (
+                                  <Link to={`/users/${user.id}`} className={styles.userLink}>
+                                      {user.name}
+                                  </Link>
+                                )}
+                                {!isAdmin && (
+                                    <div>{user.name}</div>
+                                )}
                             </td>
                             <td className={styles.userEmail}>{user.email}</td>
                             <td className={styles.userRole}>{user.role}</td>

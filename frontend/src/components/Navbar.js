@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from '../styles/Navbar.module.css';
 
 function Navbar({ links }) {
+    // eslint-disable-next-line
     const [isAdmin, setIsAdmin] = useState(false);
 
     useEffect(() => {
@@ -17,14 +18,15 @@ function Navbar({ links }) {
         }
     }, []);
 
-    const filteredLinks = links.filter(link => {
-        return isAdmin || !link.to.includes('/users');
-    });
+    // Example of links filtering by role
+    // const filteredLinks = links.filter(link => {
+    //     return isAdmin || !link.to.includes('/users');
+    // });
 
     return (
         <nav className={styles.navbar}>
             <div className={styles.navbarLinks}>
-                {filteredLinks.map((link, index) => (
+                {links.map((link, index) => (
                     <Link
                         key={index}
                         className={styles.navbarLink}

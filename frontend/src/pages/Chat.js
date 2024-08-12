@@ -4,6 +4,7 @@ import axios from 'axios';
 import Navbar from '../components/Navbar';
 import styles from '../styles/Chat.module.css';
 import { API_BASE_URL, BACKEND_BASE_URL } from '../config/apiConfig';
+import DOMPurify from 'dompurify';
 
 const Chat = React.memo(() => {
     const [messages, setMessages] = useState([]);
@@ -69,8 +70,9 @@ const Chat = React.memo(() => {
             const decodedToken = JSON.parse(atob(token.split('.')[1]));
             const userId = decodedToken.userId;
             const userName = decodedToken.userName;
+            const sanitizedNewMessage = DOMPurify.sanitize(newMessage);
 
-            socket.emit('newMessage', { userId, content: newMessage, userName });
+            socket.emit('newMessage', { userId, content: sanitizedNewMessage, userName });
             setNewMessage('');
         }
     };

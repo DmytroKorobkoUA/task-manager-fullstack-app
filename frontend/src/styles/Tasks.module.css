@@ -1,9 +1,9 @@
 /* Main container styling for tasks-related pages */
 .container {
-    padding-top: 60px; /* Space for navbar */
+    padding-top: 60px;
     min-height: 100vh;
-    background-color: #333; /* Dark grey background */
-    color: #e0e0e0; /* Light grey text color */
+    background-color: #333;
+    color: #e0e0e0;
     font-family: 'Arial', sans-serif;
     box-sizing: border-box;
 }
@@ -20,7 +20,7 @@
 .header {
     font-size: 2.5em;
     margin-bottom: 20px;
-    color: #a4f9c8; /* Mint accent color */
+    color: #a4f9c8;
 }
 
 /* Link wrapper styling */
@@ -30,7 +30,7 @@
 
 /* General link styling */
 .link {
-    color: #a4f9c8; /* Mint accent color */
+    color: #a4f9c8;
     text-decoration: none;
     margin-right: 15px;
     font-weight: bold;
@@ -38,19 +38,19 @@
 }
 
 .link:hover {
-    color: #8ce8b9; /* Darker mint color on hover */
+    color: #8ce8b9;
 }
 
 /* Create link styling */
 .createLink {
-    color: #a4f9c8; /* Mint accent color */
+    color: #a4f9c8;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s;
 }
 
 .createLink:hover {
-    color: #8ce8b9; /* Darker mint color on hover */
+    color: #8ce8b9;
 }
 
 /* Task list styling */
@@ -73,14 +73,14 @@
 }
 
 .taskLink:hover {
-    color: #a4f9c8; /* Mint accent color */
+    color: #a4f9c8;
 }
 
 /* Task details styling */
 .taskDetails {
     text-align: left;
     padding: 20px;
-    background-color: #444; /* Darker grey background */
+    background-color: #444;
     border-radius: 10px;
     color: #b3b3b3;
 }
@@ -93,14 +93,14 @@
 
 /* Delete link styling */
 .deleteLink {
-    color: #ff6b6b; /* Light red color */
+    color: #ff6b6b;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s;
 }
 
 .deleteLink:hover {
-    color: #ff4c4c; /* Darker red color on hover */
+    color: #ff4c4c;
 }
 
 /* Confirmation text styling for delete task page */
@@ -123,7 +123,7 @@
     font-size: 1em;
     font-weight: bold;
     color: #fff;
-    background-color: #ff6b6b; /* Light red background */
+    background-color: #ff6b6b;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -131,7 +131,7 @@
 }
 
 .deleteButton:hover {
-    background-color: #ff4c4c; /* Darker red on hover */
+    background-color: #ff4c4c;
 }
 
 /* Cancel button styling */
@@ -140,7 +140,7 @@
     font-size: 1em;
     font-weight: bold;
     color: #fff;
-    background-color: #555; /* Dark grey background */
+    background-color: #555;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -148,13 +148,13 @@
 }
 
 .cancelButton:hover {
-    background-color: #444; /* Darker grey on hover */
+    background-color: #444;
 }
 
 /* Form styling */
 .form {
     margin-top: 20px;
-    background-color: #444; /* Darker grey background */
+    background-color: #444;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -166,7 +166,7 @@
     flex-direction: column;
     margin-bottom: 15px;
     text-align: left;
-    align-items: flex-start; /* Align items to the start (left) */
+    align-items: flex-start;
 }
 
 /* Form label styling */
@@ -174,7 +174,7 @@
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
-    color: #a4f9c8; /* Mint accent color */
+    color: #a4f9c8;
 }
 
 /* Form input styling */
@@ -182,11 +182,11 @@
     width: 100%;
     padding: 8px;
     font-size: 1em;
-    color: #333; /* Dark text color */
+    color: #333;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
-    margin-top: 5px; /* Space between label and input */
+    margin-top: 5px;
 }
 
 /* Form checkbox styling */
@@ -201,7 +201,7 @@
     width: 100%;
     padding: 8px;
     font-size: 1em;
-    color: #333; /* Dark text color */
+    color: #333;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
@@ -214,7 +214,7 @@
     font-size: 1em;
     font-weight: bold;
     color: #fff;
-    background-color: #a4f9c8; /* Mint accent color */
+    background-color: #a4f9c8;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -222,7 +222,7 @@
 }
 
 .submitButton:hover {
-    background-color: #8ce8b9; /* Darker mint on hover */
+    background-color: #8ce8b9;
 }
 
 /* Task table styling */
@@ -234,21 +234,21 @@
 
 .taskTable th, .taskTable td {
     padding: 12px;
-    border: 1px solid #555; /* Darker grey border */
+    border: 1px solid #555;
     text-align: left;
 }
 
 .taskTable th {
-    background-color: #444; /* Darker grey background for headers */
-    color: #a4f9c8; /* Mint accent color */
+    background-color: #444;
+    color: #a4f9c8;
 }
 
 .taskTable tr:nth-child(even) {
-    background-color: #555; /* Slightly lighter grey for even rows */
+    background-color: #555;
 }
 
 .taskTable tr:hover {
-    background-color: #666; /* Slightly darker grey on hover */
+    background-color: #666;
 }
 
 /* Task title styling */
@@ -258,7 +258,7 @@
 
 /* Completed status styling */
 .taskCompleted {
-    color: #a4f9c8; /* Mint accent color */
+    color: #a4f9c8;
 }
 
 /* Task actions styling */
@@ -276,22 +276,22 @@
 }
 
 .taskActions .taskLink:hover {
-    color: #8ce8b9; /* Darker mint color on hover */
+    color: #8ce8b9;
 }
 
 /* Task detail styling */
 .taskDetail {
     text-align: left;
     padding: 20px;
-    background-color: #444; /* Dark grey background */
+    background-color: #444;
     border-radius: 10px;
-    color: #b3b3b3; /* Light grey text */
+    color: #b3b3b3;
     margin-top: 20px;
 }
 
 /* Back link styling */
 .backLink {
-    color: #a4f9c8; /* Mint accent color */
+    color: #a4f9c8;
     text-decoration: none;
     font-weight: bold;
     margin-top: 20px;
@@ -300,7 +300,7 @@
 }
 
 .backLink:hover {
-    color: #8ce8b9; /* Darker mint color on hover */
+    color: #8ce8b9;
 }
 
 /* Form button styling (general for form submit buttons) */
@@ -309,7 +309,7 @@
     font-size: 1em;
     font-weight: bold;
     color: #fff;
-    background-color: #a4f9c8; /* Mint accent color */
+    background-color: #a4f9c8;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -317,12 +317,12 @@
 }
 
 .formButton:hover {
-    background-color: #8ce8b9; /* Darker mint color on hover */
+    background-color: #8ce8b9;
 }
 
 /* Error message styling */
 .error {
-    color: #ff6b6b; /* Light red color for errors */
+    color: #ff6b6b;
     font-size: 1em;
     margin-top: 20px;
     text-align: left;

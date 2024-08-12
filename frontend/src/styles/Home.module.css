@@ -2,7 +2,7 @@
 .container {
     text-align: center;
     margin-top: 50px;
-    color: #e0e0e0; /* Light grey text for contrast */
+    color: #e0e0e0;
     font-family: 'Arial', sans-serif;
 }
 
@@ -10,7 +10,7 @@
 .header {
     font-size: 2.5em;
     font-weight: bold;
-    color: #a4f9c8; /* Mint accent color */
+    color: #a4f9c8;
     margin-bottom: 10px;
 }
 
@@ -23,6 +23,6 @@
 
 /* Content wrapper for the main page, taking navbar height into account */
 .content {
-    margin-top: 80px; /* Ensure there's space below the navbar */
+    margin-top: 80px;
     padding: 20px;
 }

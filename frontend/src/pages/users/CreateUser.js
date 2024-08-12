@@ -4,6 +4,7 @@ import { API_BASE_URL } from '../../config/apiConfig';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import styles from '../../styles/Users.module.css';
+import DOMPurify from 'dompurify';
 
 const CreateUser = () => {
     const [name, setName] = useState('');
@@ -23,9 +24,20 @@ const CreateUser = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const sanitizedName = DOMPurify.sanitize(name);
+        const sanitizedEmail = DOMPurify.sanitize(email);
+        const sanitizedPassword = DOMPurify.sanitize(password);
+        const sanitizedRole = DOMPurify.sanitize(role);
+
         try {
             const token = localStorage.getItem('token');
-            await axios.post(`${API_BASE_URL}/admin/users`, { name, email, password, role }, {
+            await axios.post(`${API_BASE_URL}/admin/users`, {
+                name: sanitizedName,
+                email: sanitizedEmail,
+                password: sanitizedPassword,
+                role: sanitizedRole
+            }, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

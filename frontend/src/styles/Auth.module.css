@@ -5,17 +5,17 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: #333; /* Dark grey background */
-    padding-top: 60px; /* Add space for navbar */
+    background-color: #333;
+    padding-top: 60px;
     box-sizing: border-box;
-    color: #e0e0e0; /* Light grey text color */
+    color: #e0e0e0;
 }
 
 /* Form wrapper styling */
 .formWrapper {
     width: 100%;
     max-width: 400px;
-    background-color: #444; /* Slightly lighter grey */
+    background-color: #444;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
@@ -25,7 +25,7 @@
 .header {
     font-size: 2em;
     margin-bottom: 20px;
-    color: #a4f9c8; /* Mint accent color */
+    color: #a4f9c8;
     text-align: center;
 }
 
@@ -48,7 +48,7 @@
     border: none;
     border-radius: 5px;
     margin-bottom: 15px;
-    background-color: #555; /* Dark grey input background */
+    background-color: #555;
     color: #e0e0e0;
 }
 
@@ -58,7 +58,7 @@
     font-size: 1.1em;
     font-weight: bold;
     color: #333;
-    background-color: #a4f9c8; /* Mint accent color */
+    background-color: #a4f9c8;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -66,12 +66,12 @@
 }
 
 .button:hover {
-    background-color: #8ce8b9; /* Darker mint color on hover */
+    background-color: #8ce8b9;
 }
 
 /* Styling for messages */
 .message {
-    color: #ff6b6b; /* Light red for error messages */
+    color: #ff6b6b;
     text-align: center;
     margin-top: 15px;
 }
@@ -97,11 +97,11 @@
 
 /* Individual link styling */
 .link {
-    color: #a4f9c8; /* Mint accent color */
+    color: #a4f9c8;
     text-decoration: none;
     transition: color 0.3s;
 }
 
 .link:hover {
-    color: #8ce8b9; /* Darker mint color on hover */
+    color: #8ce8b9;
 }

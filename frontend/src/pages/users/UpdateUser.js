@@ -4,6 +4,7 @@ import { API_BASE_URL } from '../../config/apiConfig';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import styles from '../../styles/Users.module.css';
+import DOMPurify from 'dompurify';
 
 const UpdateUser = () => {
     const { id } = useParams();
@@ -23,7 +24,7 @@ const UpdateUser = () => {
                     setError('You do not have access to this page.');
                     return;
                 }
-                const response = await axios.get(`${API_BASE_URL}/admin/users/${id}`, {
+                const response = await axios.get(`${API_BASE_URL}/users/${id}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -42,9 +43,20 @@ const UpdateUser = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const sanitizedName = DOMPurify.sanitize(name);
+        const sanitizedEmail = DOMPurify.sanitize(email);
+        const sanitizedPassword = DOMPurify.sanitize(password);
+        const sanitizedRole = DOMPurify.sanitize(role);
+
         try {
             const token = localStorage.getItem('token');
-            await axios.put(`${API_BASE_URL}/admin/users/${id}`, { name, email, password, role }, {
+            await axios.put(`${API_BASE_URL}/admin/users/${id}`, {
+                name: sanitizedName,
+                email: sanitizedEmail,
+                password: sanitizedPassword,
+                role: sanitizedRole
+            }, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

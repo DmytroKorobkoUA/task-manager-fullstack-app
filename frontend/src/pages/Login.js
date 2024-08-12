@@ -4,6 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { API_BASE_URL } from '../config/apiConfig';
 import Navbar from '../components/Navbar';
 import styles from '../styles/Auth.module.css';
+import DOMPurify from 'dompurify';
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -13,8 +14,15 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const sanitizedEmail = DOMPurify.sanitize(email);
+        const sanitizedPassword = DOMPurify.sanitize(password);
+
         try {
-            const response = await axios.post(`${API_BASE_URL}/users/login`, { email, password });
+            const response = await axios.post(`${API_BASE_URL}/users/login`, {
+                email: sanitizedEmail,
+                password: sanitizedPassword
+            });
             localStorage.setItem('token', response.data.token); // Save token
             setMessage('Login successful!');
             navigate('/dashboard');

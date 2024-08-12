@@ -19,7 +19,7 @@ const UserDetail = () => {
                     setError('You do not have access to this page.');
                     return;
                 }
-                const response = await axios.get(`${API_BASE_URL}/admin/users/${id}`, {
+                const response = await axios.get(`${API_BASE_URL}/users/${id}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }

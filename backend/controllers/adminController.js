@@ -5,41 +5,6 @@ export const getAdminRoot = (req, res) => {
     res.json({ message: 'Welcome, admin!' });
 };
 
-export const getAllUsers = async (req, res) => {
-    try {
-        const cacheKey = 'users';
-        const cachedData = await client.get(cacheKey);
-
-        if (cachedData) {
-            return res.json(JSON.parse(cachedData));
-        }
-
-        const users = await User.findAll();
-
-        await client.set(cacheKey, JSON.stringify(users), {
-            EX: 60,
-        });
-
-        return res.json(users);
-    } catch (error) {
-        console.error('Error fetching users:', error);
-        res.status(500).json({ message: error.message });
-    }
-};
-
-export const getUserById = async (req, res) => {
-    try {
-        const user = await User.findByPk(req.params.id, { include: 'Tasks' });
-        if (user) {
-            res.json(user);
-        } else {
-            res.status(404).json({ message: 'User not found' });
-        }
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-};
-
 export const createUser = async (req, res) => {
     try {
         const user = await User.create(req.body);

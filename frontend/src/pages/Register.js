@@ -4,6 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { API_BASE_URL } from '../config/apiConfig';
 import Navbar from '../components/Navbar';
 import styles from '../styles/Auth.module.css';
+import DOMPurify from 'dompurify';
 
 function Register() {
     const [name, setName] = useState('');
@@ -15,11 +16,16 @@ function Register() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const sanitizedEmail = DOMPurify.sanitize(email);
+        const sanitizedName = DOMPurify.sanitize(name);
+        const sanitizedPassword = DOMPurify.sanitize(password);
+
         try {
             const response = await axios.post(`${API_BASE_URL}/users/register`, {
-                name,
-                email,
-                password,
+                name: sanitizedName,
+                email: sanitizedEmail,
+                password: sanitizedPassword,
                 role: isAdmin ? 'admin' : 'user'
             });
             localStorage.setItem('token', response.data.token);

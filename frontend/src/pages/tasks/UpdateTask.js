@@ -5,6 +5,7 @@ import { GET_TASK, UPDATE_TASK, GET_TASKS } from '../../graphql/taskQueries';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import styles from '../../styles/Tasks.module.css';
+import DOMPurify from 'dompurify';
 
 const UpdateTask = () => {
     const { id } = useParams();
@@ -48,9 +49,12 @@ const UpdateTask = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const sanitizedTitle = DOMPurify.sanitize(title);
+
         try {
             await updateTask({
-                variables: { id, title, completed, userId: selectedUser },
+                variables: { id, title: sanitizedTitle, completed, userId: selectedUser },
             });
             navigate('/tasks');
         } catch (error) {
