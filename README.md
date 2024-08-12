@@ -61,6 +61,15 @@ This project utilizes a variety of technologies to provide a robust and feature-
 - **Responsive Design**: Adaptable UI for different screen sizes.
 - **Docker Support**: Frontend can be containerized for easy deployment and consistency across environments.
 
+## Progressive Web App (PWA)
+
+This application includes Progressive Web App (PWA) features to enhance the user experience. The key features include:
+
+- **Web Manifest**: A `manifest.json` file is included to define how the app appears when installed on a user's device. This includes settings for the app name, icons, theme color, and display mode.
+- **Service Worker**: A `serviceWorker.js` file is used to cache assets and enable offline functionality. This allows the application to load quickly and remain functional even when the user is offline.
+
+To customize these features, you can modify the `manifest.json` file in the `public/` directory and the `serviceWorker.js` file in the `src/` directory.
+
 ## Requirements
 
 - **Node.js**: Ensure you have Node.js (version 12 or later) installed.
@@ -206,6 +215,11 @@ This will concurrently run the backend on http://localhost:3000 and the frontend
 ## Frontend Overview
 
 The frontend is a React application that allows users to interact with the backend API. It provides a responsive UI for task management, user authentication, and real-time chat.
+
+### Progressive Web App (PWA) Features
+
+The frontend includes Progressive Web App features such as a web manifest and a service worker to improve the user experience by enabling offline functionality and faster load times.
+
 ### Scripts
 
 - **Start the frontend**:
